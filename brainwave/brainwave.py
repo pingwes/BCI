@@ -14,14 +14,23 @@ neurosity.login({
 
 original_stdout = sys.stdout
 
-def run(et):
-    f = open('brainwave/data/' + et + '.log', 'w')
+def print_data(data):
+    print('{"data": ' + str(data['data']) +
+          ', "info": { "channelNames": ["CP3", "C3", "F5", "PO3", "PO4", "F6", "C4", "CP4"], "notchFrequency": ' +
+          ' "' + str(data['info']['notchFrequency']) + '"' +
+          ',"samplingRate":' + str(data['info']['samplingRate']) +
+          ', "startTime": ' + str(data['info']['startTime']) +
+          '}, "label": "' + str(data['label']) + '"}')
+
+
+def run(epoch_time):
+    f = open('brainwave/data/' + epoch_time + '.log', 'w')
 
     def callback(data):
         if data != None:
             sys.stdout = f  # Change the standard output to the file we created.
-            print(data)
+            print_data(data)
             sys.stdout = original_stdout  # Reset the standard output to its original value
-            print(data)
+            print_data(data)
 
     neurosity.brainwaves_raw(callback)

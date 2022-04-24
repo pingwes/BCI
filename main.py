@@ -19,7 +19,6 @@ t1 = threading.Thread(target=key_run, args=(epoch_time,))
 t2 = threading.Thread(target=scroll_run, args=(epoch_time,))
 t3 = threading.Thread(target=brainwave_run, args=(epoch_time,))
 
-
 t1.start()
 t2.start()
 t3.start()

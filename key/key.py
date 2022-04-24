@@ -6,11 +6,9 @@ keys = []
 import csv
 import sys
 
-epoch_time = str(int(time.time()))
-
 original_stdout = sys.stdout # Save a reference to the original standard output
 
-def run(et):
+def run(epoch_time):
     print("key running")
     with open('key/data/' + epoch_time + '.log', 'w') as f:
 
