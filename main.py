@@ -1,16 +1,22 @@
-# This is a sample Python script.
+from key import key
+from scroll import scroll
+import time
+import threading
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def key_run(epoch_t):
+    key.run(epoch_t)
 
+def scroll_run(epoch_t):
+    scroll.run(epoch_t)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+epoch_time = str(int(time.time()))
 
+t1 = threading.Thread(target=key_run, args=(epoch_time,))
+t2 = threading.Thread(target=scroll_run, args=(epoch_time,))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+t1.start()
+t2.start()
+t1.join()
+t2.join()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print("Done!")
