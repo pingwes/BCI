@@ -4,11 +4,10 @@ charCount = 0
 keys = []
 import sys
 
-epoch_time = str(int(time.time()))
 
 original_stdout = sys.stdout # Save a reference to the original standard output
 
-def run(et):
+def run(epoch_time):
     print("scroll running")
     with open('scroll/data/' + epoch_time + '.log', 'w') as f:
         sys.stdout = f # Change the standard output to the file we created.
