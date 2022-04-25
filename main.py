@@ -2,7 +2,8 @@ from key import key
 from scroll import scroll
 from brainwave import brainwave
 import time
-import threading
+from multiprocessing import Process
+
 
 def key_run(epoch_t):
     key.run(epoch_t)
@@ -13,18 +14,19 @@ def scroll_run(epoch_t):
 def brainwave_run(epoch_t):
     brainwave.run(epoch_t)
 
+
 epoch_time = str(int(time.time()))
 
-t1 = threading.Thread(target=key_run, args=(epoch_time,))
-t2 = threading.Thread(target=scroll_run, args=(epoch_time,))
-t3 = threading.Thread(target=brainwave_run, args=(epoch_time,))
+if __name__ == '__main__':
 
-t1.start()
-t2.start()
-t3.start()
+    p1 = Process(target=key_run, args=(epoch_time,))
+    p2 = Process(target=scroll_run, args=(epoch_time,))
+    p3 = Process(target=brainwave_run, args=(epoch_time,))
 
-t1.join()
-t2.join()
-t3.join()
+    p1.start()
+    p2.start()
+    p3.start()
 
-print("Done!")
+    p1.join()
+    p2.join()
+    p3.join()
