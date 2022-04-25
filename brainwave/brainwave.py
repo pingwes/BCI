@@ -20,7 +20,7 @@ def print_data(data):
           ' "' + str(data['info']['notchFrequency']) + '"' +
           ',"samplingRate":' + str(data['info']['samplingRate']) +
           ', "startTime": ' + str(data['info']['startTime']) +
-          '}, "label": "' + str(data['label']) + '"}')
+          '}, "label": "' + str(data['label']) + '"},')
 
 
 def run(epoch_time):

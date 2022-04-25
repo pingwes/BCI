@@ -2,12 +2,11 @@ import json
 import csv
 import os
 
-
 labeling_directory = os.listdir('data')
-f = open("data/data"+ str(len(labeling_directory)) + ".csv", "w")
+f = open("data/data" + str(len(labeling_directory)) + ".csv", "w")
 writer = csv.writer(f)
 
-channels = ["CP3","C3","F5","PO3","PO4","F6","C4","CP4"]
+channels = ["CP3", "C3", "F5", "PO3", "PO4", "F6", "C4", "CP4"]
 header = [(channel + '_' + str(i)) for channel in channels for i in range(0, 16)]
 
 header.append("label")
@@ -17,16 +16,33 @@ bw_dir = '../brainwave/data'
 key_dir = '../key/data'
 scroll_dir = '../scroll/data'
 
+def label_data(bw_data,scroll_data,key_data):
+    print('label_data')
+    for scroll in scroll_data:
+        print('scroll')
+        obj = json.loads(scroll)
+        print(obj["input"])
+        # mouse_objs.append(obj)
+
+    for bw in bw_data:
+        print("yo")
+        # bw_obj = json.loads(bw[:-1])
+        # time = bw_obj["info"]['startTime'] / 1000
+        # data = bw_obj['data']
+        # print(time)
+
+
 for filename in os.listdir(bw_dir):
 
     file = os.path.join(bw_dir, filename)
     if not os.path.isfile(file): continue
 
-    # bw_data = open(file, "r")
-    print(filename)
+    bw_data = open(bw_dir + '/' + filename, "r")
+    scroll_data = open(scroll_dir + '/' + filename, "r")
+    key_data = open(key_dir + '/' + filename, "r")
 
-
-
+    print(key_data)
+    label_data(bw_data,scroll_data,key_data)
 
 
 #

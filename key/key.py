@@ -16,13 +16,11 @@ def run(epoch_time):
             sys.stdout = f  # Change the standard output to the file we created.
 
             try:
-                current_time = str(time.time())
-
                 sys.stdout = f  # Change the standard output to the file we created.
+                current_time = str(time.time())
                 print('{ "input": "key_pressed", "key: "' + str(key) + ', "time": ' + current_time + '}')
                 sys.stdout = original_stdout
                 print('{ "input": "key_pressed", "key: "' + str(key) + ', "time": ' + current_time + '}')
-
             except Exception as ex:
                 print('There was an error : ',ex)
 
