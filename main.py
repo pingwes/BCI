@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     p1 = Process(target=key_run, args=(epoch_time,))
     p2 = Process(target=scroll_run, args=(epoch_time,))
-    p3 = Process(target=brainwave_run(), args=(epoch_time,))
+    p3 = Process(target=brainwave_run, args=(epoch_time,))
 
     p1.start()
     p2.start()

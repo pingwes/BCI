@@ -18,9 +18,10 @@ def run(epoch_time):
             try:
                 sys.stdout = f  # Change the standard output to the file we created.
                 current_time = str(time.time())
-                print('{ "input": "key_pressed", "key: "' + str(key) + ', "time": ' + current_time + '}')
-                sys.stdout = original_stdout
-                print('{ "input": "key_pressed", "key: "' + str(key) + ', "time": ' + current_time + '}')
+                if not str(key) == '"' or not str(key) == "'":
+                    print('{ "input": "key_pressed", "key": "' + str(key) + '", "time": ' + current_time + '}')
+                    sys.stdout = original_stdout
+                    print('{ "input": "key_pressed", "key": "' + str(key) + '", "time": ' + current_time + '}')
             except Exception as ex:
                 print('There was an error : ',ex)
 
@@ -28,9 +29,10 @@ def run(epoch_time):
             current_time = str(int(time.time()))
 
             sys.stdout = f  # Change the standard output to the file we created.
-            print('{ "input": "key_released", "key: "' + str(key) + ', "time": ' + current_time + '}')
-            sys.stdout = original_stdout
-            print('{ "input": "key_released", "key: "' + str(key) + ', "time": ' + current_time + '}')
+            if not str(key) == '"' or not str(key) == "'":
+                print('{ "input": "key_released", "key": "' + str(key) + '", "time": ' + current_time + '}')
+                sys.stdout = original_stdout
+                print('{ "input": "key_released", "key": "' + str(key) + '", "time": ' + current_time + '}')
 
         with Listener(on_press=onKeyPress,\
             on_release=onKeyRelease) as listener:
